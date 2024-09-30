@@ -1,0 +1,40 @@
+<resources>
+    <string name="app_name">SPU111</string>
+
+    <string name="main_title">Основи Android</string>
+    <string name="main_calc_button">Калькулятор</string>
+
+    <!--              Calculator       -->
+    <string name="calc_title">Калькулятор</string>
+    <string name="calc_btn_percent">%</string>
+    <string name="calc_btn_c">C</string>
+    <string name="calc_btn_ce">CE</string>
+    <string name="calc_btn_backspace">\u232B</string>
+    <string name="calc_btn_digit_0">0</string>
+    <string name="calc_btn_digit_1">1</string>
+    <string name="calc_btn_digit_2">2</string>
+    <string name="calc_btn_digit_3">3</string>
+    <string name="calc_btn_digit_4">4</string>
+    <string name="calc_btn_digit_5">5</string>
+    <string name="calc_btn_digit_6">6</string>
+    <string name="calc_btn_digit_7">7</string>
+    <string name="calc_btn_digit_8">8</string>
+    <string name="calc_btn_digit_9">9</string>
+    <string name="calc_btn_dot">,</string>
+    <string name="calc_btn_operation_plus">+</string>
+    <string name="calc_btn_operation_minus">—</string>
+    <string name="calc_btn_operation_multiply">\u2715</string>
+    <string name="calc_btn_operation_divide">\u00F7</string>
+    <string name="calc_btn_equal">\u003D</string>
+    <string name="calc_btn_sign_toggle">+/-</string>
+    <string name="calc_btn_square">x²</string>
+    <string name="calc_btn_sqrt">√x</string>
+    <string name="calc_btn_inverse">1/x</string>
+    <string name="calc_minus_sign">\u2212</string>
+    <string name="calc_msg_max_digits">Ліміт цифр досягнуто</string>
+    <string name="calc_msg_two_dots">Кома може бути лише одна</string>
+    <string name="calc_msg_minus_zero">Нуль не може бути від\'ємним</string>
+    <string name="calc_msg_overflow">OVERFLOW</string>
+    <string name="calc_msg_divide_by_zero">Ділення на нуль заборонено</string>
+    <string name="calc_msg_negative_sqrt">Значення не може бути менше 0</string>
+</resources>
