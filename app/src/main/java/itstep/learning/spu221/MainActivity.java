@@ -28,11 +28,26 @@ public class MainActivity extends AppCompatActivity {
         // R - resource
         Button calcButton = findViewById( R.id.main_calc_button ) ;
         calcButton.setOnClickListener( this::onCalcClick );
+
+        findViewById(R.id.main_anim_button).setOnClickListener(this::onAnimClick);
+        findViewById(R.id.main_game_button).setOnClickListener(this::onGameClick);
     }
 
     private void onCalcClick( View view ) {
 //        Toast.makeText(this, "onCalcClick", Toast.LENGTH_SHORT).show();
         Intent activityIntent = new Intent (getApplicationContext(), CalcActivity.class);
         startActivity(activityIntent);
+    }
+
+    private void onAnimClick( View view ) {
+        startActivity(new Intent
+                (getApplicationContext(),
+                        AnimActivity.class));
+    }
+
+    private void onGameClick( View view ) {
+        startActivity(new Intent
+                (getApplicationContext(),
+                        GameActivity.class));
     }
 }

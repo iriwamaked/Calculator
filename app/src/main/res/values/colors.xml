@@ -2,6 +2,7 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="yellow">#E9CA00</color>
 
     <color name="main_background">#B8D3F0</color>
     <color name="main_title">#664F0A</color>
@@ -13,4 +14,22 @@
     <color name="calc_equal_background">#4CC1FE</color>
     <color name="calc_history_foreground">#929292</color>
     <color name="calc_result_foreground">#FEFEFE</color>
+<!--region Game-->
+    <color name="yellow_game_background">#E9CA00</color>
+    <color name="grey_game_background">#3E3C34</color>
+    <color name="red_game_background">#FF5D00</color>
+
+    <color name="game_digit_4">#ECE0C8</color>
+    <color name="game_digit_8">#F4B17A</color>
+    <color name="game_digit_16">#F59563</color>
+    <color name="game_digit_32">#F57C5F</color>
+    <color name="game_digit_64">#EA4E5D</color>
+    <color name="game_digit_128">#71B5D4</color>
+    <color name="game_digit_256">#007BBE</color>
+    <color name="game_digit_512">#ECCC5F</color>
+    <color name="game_digit_1024">#F65F3D</color>
+    <color name="game_digit_2048">#E14338</color>
+
+    <!--endregion-->
+
 </resources>

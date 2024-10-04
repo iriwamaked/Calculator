@@ -46,10 +46,22 @@
             app:backgroundTint="@null"/>
 
         <Button
+            android:id="@+id/main_anim_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/anim_title"
+            android:background="@color/main_button_background"
+            android:layout_marginTop="45dp"
+            android:paddingVertical="12dp"
+            android:textColor="@color/main_button_foreground"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:backgroundTint="@null"/>
+        <Button
             android:id="@+id/main_game_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/main_calc_button"
+            android:text="@string/game_title"
             android:background="@color/main_button_background"
             android:layout_marginTop="45dp"
             android:paddingVertical="12dp"
