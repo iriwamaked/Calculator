@@ -24,17 +24,23 @@
         <item name="backgroundTint">@null</item>
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_weight">1</item>
+        <item name="android:padding">0dp</item>
 
     </style>
     <style name="game_name" parent="game_btn">
         <item name="android:layout_height">wrap_content</item>
         <item name="android:background">@drawable/game_btn_top</item>
         <item name="android:layout_marginEnd">10dp</item>
+        <item name="android:paddingHorizontal">0dp</item>
     </style>
+
     <style name="game_top_right" parent="game_btn">
         <item name="android:layout_height">wrap_content</item>
         <item name="android:background">@drawable/game_btn_top_right_with_background</item>
         <item name="android:layout_marginEnd">7dp</item>
+        <item name="android:paddingVertical">7dp</item>
+        <item name="android:paddingHorizontal">0dp</item>
+        <item name="android:gravity">center</item>
 
     </style>
     <style name="game_bottom_right" parent="game_btn">
@@ -43,8 +49,75 @@
         <item name="android:layout_marginVertical">7dp</item>
         <item name="android:layout_marginEnd">7dp</item>
     </style>
-    <style name="game_bnt_play" parent="game_btn">
+    
+    <style name="game_cell" parent="game_btn">
         <item name="android:layout_height">match_parent</item>
-        <item name="android:background">@drawable/table_border</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_margin">3dp</item>
+    </style>
+    <style name="game_cell_0" parent="game_cell">
+        <item name="android:background">@color/game_digit_0</item>
+        <item name="android:textColor">@color/game_fg_0</item>
+        <item name="android:textSize">50sp</item>
+    </style>
+    <style name="game_cell_2" parent="game_cell">
+        <item name="android:background">@color/game_digit_2</item>
+        <item name="android:textColor">@color/game_fg_2</item>
+        <item name="android:textSize">50sp</item>
+    </style>
+    <style name="game_cell_4" parent="game_cell">
+        <item name="android:background">@color/game_digit_4</item>
+        <item name="android:textColor">@color/game_fg_4</item>
+        <item name="android:textSize">50sp</item>
+    </style>
+    <style name="game_cell_8" parent="game_cell">
+        <item name="android:background">@color/game_digit_8</item>
+        <item name="android:textColor">@color/game_fg_8</item>
+        <item name="android:textSize">50sp</item>
+    </style>
+    <style name="game_cell_16" parent="game_cell">
+        <item name="android:background">@color/game_digit_16</item>
+        <item name="android:textColor">@color/game_fg_16</item>
+        <item name="android:textSize">50sp</item>
+    </style>
+    <style name="game_cell_32" parent="game_cell">
+        <item name="android:background">@color/game_digit_32</item>
+        <item name="android:textColor">@color/game_fg_32</item>
+        <item name="android:textSize">50sp</item>
+    </style>
+    <style name="game_cell_64" parent="game_cell">
+        <item name="android:background">@color/game_digit_64</item>
+        <item name="android:textColor">@color/game_fg_64</item>
+        <item name="android:textSize">50sp</item>
+    </style>
+    <style name="game_cell_128" parent="game_cell">
+        <item name="android:background">@color/game_digit_128</item>
+        <item name="android:textColor">@color/game_fg_128</item>
+        <item name="android:textSize">50sp</item>
+    </style>
+    <style name="game_cell_256" parent="game_cell">
+        <item name="android:background">@color/game_digit_256</item>
+        <item name="android:textColor">@color/game_fg_256</item>
+        <item name="android:textSize">50sp</item>
+    </style>
+    <style name="game_cell_512" parent="game_cell">
+        <item name="android:background">@color/game_digit_512</item>
+        <item name="android:textColor">@color/game_fg_512</item>
+        <item name="android:textSize">26sp</item>
+    </style>
+    <style name="game_cell_1024" parent="game_cell">
+        <item name="android:background">@color/game_digit_1024</item>
+        <item name="android:textColor">@color/game_fg_1024</item>
+        <item name="android:textSize">26sp</item>
+    </style>
+    <style name="game_cell_2048" parent="game_cell">
+        <item name="android:background">@color/game_digit_2048</item>
+        <item name="android:textColor">@color/game_fg_2048</item>
+        <item name="android:textSize">26sp</item>
+    </style>
+    <style name="game_cell_4096" parent="game_cell">
+        <item name="android:background">@color/game_digit_4096</item>
+        <item name="android:textColor">@color/game_fg_4096</item>
+        <item name="android:textSize">18sp</item>
     </style>
 </resources>

@@ -4,4 +4,5 @@
     <solid android:color="@color/grey_game_background"/>
     <!-- Радиус для закругления углов -->
     <corners android:radius="5dp"/>
+    <padding android:bottom="150dp"/>
 </shape>

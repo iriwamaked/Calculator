@@ -14,11 +14,14 @@
     <color name="calc_equal_background">#4CC1FE</color>
     <color name="calc_history_foreground">#929292</color>
     <color name="calc_result_foreground">#FEFEFE</color>
-<!--region Game-->
+
+    <!--region Game-->
     <color name="yellow_game_background">#E9CA00</color>
     <color name="grey_game_background">#3E3C34</color>
     <color name="red_game_background">#FF5D00</color>
-
+    <color name="field_background">#AB9E7E</color>
+    <color name="game_digit_0">#BEAFA0</color>
+    <color name="game_digit_2">#BEAFA0</color>
     <color name="game_digit_4">#ECE0C8</color>
     <color name="game_digit_8">#F4B17A</color>
     <color name="game_digit_16">#F59563</color>
@@ -29,7 +32,19 @@
     <color name="game_digit_512">#ECCC5F</color>
     <color name="game_digit_1024">#F65F3D</color>
     <color name="game_digit_2048">#E14338</color>
-
+    <color name="game_digit_4096">#3E3C33</color>
+    <color name="game_fg_0">#BEAFA0</color>
+    <color name="game_fg_2">#786E64</color>
+    <color name="game_fg_4">#786F65</color>
+    <color name="game_fg_8">#F9F6F2</color>
+    <color name="game_fg_16">#F9F4ED</color>
+    <color name="game_fg_32">#F9F6F1</color>
+    <color name="game_fg_64">#F9F6F1</color>
+    <color name="game_fg_128">#F8F6F3</color>
+    <color name="game_fg_256">#F8F6F3</color>
+    <color name="game_fg_512">#F8F6F3</color>
+    <color name="game_fg_1024">#F8F6F3</color>
+    <color name="game_fg_2048">#F8F6F3</color>
+    <color name="game_fg_4096">#F8F6F3</color>
     <!--endregion-->
-
 </resources>
