@@ -28,6 +28,7 @@
     <string name="game_digit_2048">2048</string>
 
     <string name="game_score_tpl">SCORE\n%d</string>
+    <string name="game_best_score_tpl">BEST\n%d</string>
     <string name="game_new_game">NEW</string>
     <string name="game_undo">UNDO</string>
     <!--endregion-->
