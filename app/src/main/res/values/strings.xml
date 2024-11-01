@@ -3,6 +3,9 @@
 
     <string name="main_title">Основи Android</string>
     <string name="main_calc_button">Калькулятор</string>
+    <string name="main_rates_button">Курси валют</string>
+
+    <string name="rates_title">Курси валют НБУ</string>
 
     <!--region Animation-->
     <string name="anim_title">Анімації</string>
