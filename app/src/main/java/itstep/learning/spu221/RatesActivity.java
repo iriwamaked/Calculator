@@ -25,6 +25,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class RatesActivity extends AppCompatActivity {
     private final static String nbuUrl="https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?json";
@@ -89,7 +92,74 @@ public class RatesActivity extends AppCompatActivity {
     }
 
     private void showRates(String jsonString){
-        JSONArray rates;
+        try {
+            JSONArray ratesJsonArray = new JSONArray(jsonString);
+            ArrayList<JSONObject> ratesList = new ArrayList<>();
+
+            // Заполняем список JSON объектами из массива
+            for (int i = 0; i < ratesJsonArray.length(); i++) {
+                ratesList.add(ratesJsonArray.getJSONObject(i));
+            }
+
+            // Сортируем список по названию валюты (поле "txt")
+            Collections.sort(ratesList, new Comparator<JSONObject>() {
+                @Override
+                public int compare(JSONObject o1, JSONObject o2) {
+                    try {
+                        return o1.getString("txt").compareToIgnoreCase(o2.getString("txt"));
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                    return 0;
+                }
+            });
+
+            // Отображаем отсортированные данные
+            for (JSONObject rate : ratesList) {
+                String currencyName = rate.getString("txt");
+                double exchangeRate = rate.getDouble("rate");
+
+                // Создаем горизонтальный контейнер для двух текстовых полей
+                LinearLayout rateItemLayout = new LinearLayout(this);
+                rateItemLayout.setOrientation(LinearLayout.HORIZONTAL);
+                rateItemLayout.setPadding(10, 5, 10, 5);
+                rateItemLayout.setBackground(AppCompatResources.getDrawable(
+                        getApplicationContext(),
+                        R.drawable.calc_btn_equal));
+
+                // Настраиваем параметры для внешнего отступа
+                LinearLayout.LayoutParams itemLayoutParams = new LinearLayout.LayoutParams(
+                        ViewGroup.LayoutParams.MATCH_PARENT,
+                        ViewGroup.LayoutParams.WRAP_CONTENT
+                );
+                itemLayoutParams.setMargins(10, 5, 10, 5);
+                rateItemLayout.setLayoutParams(itemLayoutParams);
+
+                // Создаем текстовое поле для названия валюты
+                TextView currencyNameTextView = new TextView(this);
+                currencyNameTextView.setText(currencyName);
+                currencyNameTextView.setLayoutParams(new LinearLayout.LayoutParams(
+                        0, ViewGroup.LayoutParams.WRAP_CONTENT, 1f));
+
+                // Создаем текстовое поле для курса валюты с выравниванием по правому краю
+                TextView exchangeRateTextView = new TextView(this);
+                exchangeRateTextView.setText(String.format("%.4f", exchangeRate));
+                exchangeRateTextView.setGravity(View.TEXT_ALIGNMENT_TEXT_END);
+                exchangeRateTextView.setLayoutParams(new LinearLayout.LayoutParams(
+                        ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+
+                // Добавляем текстовые поля в контейнер
+                rateItemLayout.addView(currencyNameTextView);
+                rateItemLayout.addView(exchangeRateTextView);
+
+                // Добавляем контейнер в основной контейнер для курсов
+                ratesContainer.addView(rateItemLayout);
+            }
+        } catch (JSONException ex) {
+            Toast.makeText(this, ex.getMessage(), Toast.LENGTH_SHORT).show();
+        }
+
+        /*JSONArray rates;
         try {
             rates = new JSONArray(jsonString);
             //парсим JSON, изымаем только текст,
@@ -104,7 +174,7 @@ public class RatesActivity extends AppCompatActivity {
                 tv.setPadding(10,5,10,5);
                 tv.setBackground(AppCompatResources.getDrawable(
                         getApplicationContext(),
-                        R.drawable.calc_btn_equal));*/
+                        R.drawable.calc_btn_equal));
                 LinearLayout rateItem = new LinearLayout(RatesActivity.this);
                 rateItem.setOrientation(LinearLayout.HORIZONTAL);
                 rateItem.setPadding(10,5,10,5);
@@ -146,7 +216,7 @@ public class RatesActivity extends AppCompatActivity {
         } catch (JSONException ex) {
             Toast.makeText(this, ex.getMessage(), Toast.LENGTH_SHORT).show();
             return;
-        }
+        }*/
     }
 
     /*поскольку из InputStream может быть исколючение, мы его добавляем к методу
