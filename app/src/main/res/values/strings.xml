@@ -9,7 +9,7 @@
 
     <!--Chat-->
     <string name="chat_title">Чат</string>
-    <string name="chat_nik">Nik: </string>
+    <string name="chat_nik">Введите ник: </string>
     <string name="chat_nik_default">Iriwa </string>
     <string name="chat_msg">Message: </string>
     <string name="chat_msg_default">Привіт </string>

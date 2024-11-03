@@ -23,7 +23,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/chat_nik"
+
             android:textSize="16sp"/>
         <EditText
             android:id="@+id/chat_et_nik"
@@ -31,10 +31,10 @@
             android:layout_weight="1"
             android:layout_height="wrap_content"
             android:minHeight="48dp"
-            android:autofillHints="@string/chat_nik_default"
+            android:autofillHints=" "
             android:inputType="text"
             android:hint="@string/chat_nik"
-            android:text="@string/chat_nik_default"
+
             />
     </LinearLayout>
     <ScrollView

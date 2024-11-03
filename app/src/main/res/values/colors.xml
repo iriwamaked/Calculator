@@ -49,4 +49,5 @@
     <!--endregion-->
 
     <color name="chat_msg_bg">#CBFDAB</color>
+    <color name="chat_msg_other_bg">#838582</color>
 </resources>

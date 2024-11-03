@@ -1,12 +1,15 @@
 package itstep.learning.spu221;
 
 import android.annotation.SuppressLint;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
@@ -49,6 +52,8 @@ public class ChatActivity extends AppCompatActivity {
     //Android.os Handler - позволяет отправлять сообщения в процессе, ставить их в очередь
     //для отложенных запусков
     private final Handler handler = new Handler();
+
+    private Animation scaleAnimation;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,10 +66,38 @@ public class ChatActivity extends AppCompatActivity {
         //});
         findViewById(R.id.chat_btn_send).setOnClickListener(this::onSendMessageClick);
         etAuthor= findViewById(R.id.chat_et_nik);
+        //извлекаем сохраненный ник из API-интерфейса SharedPreferences для хранения и получения
+        //простых значений
+        // (объект, указывает на файл, содержащий
+        //пары "ключ-значение" с простыми методами для чтения и записи.
+        //подробнее - https://developer.android.com/training/data-storage/shared-preferences?hl=ru
+
+
+        SharedPreferences sharedPreferences=getSharedPreferences("chat_preferences", MODE_PRIVATE);
+        //SharedPreferences.Editor editor = sharedPreferences.edit();
+
+        // Очищаем все значения
+        //editor.clear();
+
+        // Применяем изменения
+       // editor.apply(); // или editor.commit();
+
+        String savedNik = sharedPreferences.getString("author_nick", null);
+        if(savedNik!=null){
+            etAuthor.setText(savedNik);
+            //блокируем возможность редактирования ника при наличии сохраненного (после первого ввода)
+            etAuthor.setEnabled(false);
+        }
+
+
+
         etMessage=findViewById(R.id.chat_et_message);
         chatContainer= findViewById(R.id.chat_ll_container);
         chatScroller=findViewById(R.id.chat_sv_container);
         handler.post (this::reloadChat);
+
+        scaleAnimation= AnimationUtils.loadAnimation(this, R.anim.scale_msg);
+        scaleAnimation.reset();
     }
 
     private void reloadChat(){
@@ -82,6 +115,13 @@ public class ChatActivity extends AppCompatActivity {
             Toast.makeText(this, "Ввведіть повідомлення", Toast.LENGTH_SHORT).show();
             return;
         }
+
+        //Сохраняем ник при первом вводе
+        SharedPreferences sharedPreferences = getSharedPreferences("chat_preferences", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("author_nick", author);
+        editor.apply();
+
         new Thread(()->sendMessage(new ChatMessage(author, message))).start();
 }
 
@@ -149,6 +189,7 @@ public class ChatActivity extends AppCompatActivity {
             JSONArray jsonArray = jsonObject.getJSONArray("data");
             //chatContainer.removeAllViews();
             boolean wasNewMessage = false;
+            ChatMessage newMessage=null;
             for (int i = 0; i < jsonArray.length(); i++) {
                 ChatMessage chatMessage = new ChatMessage(jsonArray.getJSONObject(i));
                 //проверяем, есть ли это сообщение в ранее принятых (во внутренней коллекции)
@@ -156,16 +197,29 @@ public class ChatActivity extends AppCompatActivity {
                     //новое сообщение - добавляем в коллекцию
                     messages.add(chatMessage);
                     wasNewMessage = true;
+                    newMessage=chatMessage;
                 }
             }
             if(wasNewMessage){
                 messages.sort((m1,m2)-> m1.getMoment().compareTo(m2.getMoment()));
                 //chatContainer.removeAllViews();
+               // ChatMessage lastMsg = messages.get(messages.size()-1);
                 for (ChatMessage chatMessage: messages) {
                     if(chatMessage.getView()==null){ //сообщения не отображены
                         chatMessage.setView(messageView(chatMessage));
                     }
+                    else{
+                        if(chatMessage.getView().getParent() instanceof ViewGroup){
+                            ViewGroup parent = (ViewGroup)chatMessage.getView().getParent();
+                            parent.removeView(chatMessage.getView());
+
+                        }
+                    }
+
                     chatContainer.addView(chatMessage.getView());
+                    if(chatMessage==newMessage){
+                        chatMessage.getView().startAnimation(scaleAnimation);
+                    }
                 }
                 chatScroller.post(()->chatScroller.fullScroll(View.FOCUS_DOWN));
             }
@@ -180,22 +234,32 @@ public class ChatActivity extends AppCompatActivity {
 
     private View messageView (ChatMessage chatMessage){
         LinearLayout box = new LinearLayout(ChatActivity.this);
-        box.setOrientation(LinearLayout.VERTICAL);
-        box.setPadding(15,15,15,15);
-        box.setBackground(AppCompatResources.getDrawable(this, R.drawable.chat_msg));
         LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.WRAP_CONTENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT
         );
         lp.setMargins(5,7,7,20);
-        lp.gravity= Gravity.START;
+        box.setOrientation(LinearLayout.VERTICAL);
+        box.setPadding(15,15,15,15);
+        String currentNik = etAuthor.getText().toString();
+        if(chatMessage.getAuthor().equals(currentNik)){
+            chatMessage.setAuthor("Я");
+            box.setBackground(AppCompatResources.getDrawable(this, R.drawable.chat_msg));
+            lp.gravity= Gravity.END;
+
+        }
+        else{
+            box.setBackground(AppCompatResources.getDrawable(this, R.drawable.chat_msg_other));
+            lp.gravity= Gravity.START;
+        }
+
         box.setLayoutParams(lp);
 
         TextView tv = new TextView(ChatActivity.this);
         TextView tvMsg = new TextView(ChatActivity.this);
         //прогоняем его, преобразовываем в ChatMessage и изымаем из него текст
         tv.setText(
-                chatMessage.getMoment()+ " " + chatMessage.getAuthor());
+                chatMessage.getFormattedMoment()+ " " + chatMessage.getAuthor());
         box.addView(tv);
         tvMsg.setText(chatMessage.getText());
         box.addView(tvMsg);
@@ -330,6 +394,10 @@ public class ChatActivity extends AppCompatActivity {
 
         public void setMoment(Date moment) {
             this.moment = moment;
+        }
+
+        public String getFormattedMoment(){
+            return DateTimeFormatter.formatMessageMoment(momentFormat.format(moment));
         }
     }
 }
