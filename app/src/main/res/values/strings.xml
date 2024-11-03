@@ -4,9 +4,17 @@
     <string name="main_title">Основи Android</string>
     <string name="main_calc_button">Калькулятор</string>
     <string name="main_rates_button">Курси валют</string>
-
+    <string name="main_chat_button">Chat</string>
     <string name="rates_title">Курси валют НБУ</string>
 
+    <!--Chat-->
+    <string name="chat_title">Чат</string>
+    <string name="chat_nik">Nik: </string>
+    <string name="chat_nik_default">Iriwa </string>
+    <string name="chat_msg">Message: </string>
+    <string name="chat_msg_default">Привіт </string>
+    <string name="chat_semantic_send">Send</string>
+    <!--endregion-->
     <!--region Animation-->
     <string name="anim_title">Анімації</string>
     <string name="alpha_title">Прозорість</string>

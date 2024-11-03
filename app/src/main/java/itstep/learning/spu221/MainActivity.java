@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.main_anim_button).setOnClickListener(this::onAnimClick);
         findViewById(R.id.main_game_button).setOnClickListener(this::onGameClick);
         findViewById(R.id.main_rates_button).setOnClickListener(this::onRatesClick);
+        findViewById(R.id.main_chat_button).setOnClickListener(this::onChatClick);
     }
 
     private void onCalcClick( View view ) {
@@ -55,5 +56,10 @@ public class MainActivity extends AppCompatActivity {
         startActivity(new Intent
                 (getApplicationContext(),
                         RatesActivity.class));
+    }
+    private void onChatClick( View view ) {
+        startActivity(new Intent
+                (getApplicationContext(),
+                        ChatActivity.class));
     }
 }

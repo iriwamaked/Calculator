@@ -47,4 +47,6 @@
     <color name="game_fg_2048">#F8F6F3</color>
     <color name="game_fg_4096">#F8F6F3</color>
     <!--endregion-->
+
+    <color name="chat_msg_bg">#CBFDAB</color>
 </resources>
